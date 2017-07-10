@@ -34,6 +34,8 @@ if __name__ == "__main__":
                               passwd = config['db_pass'],
                               db = config['db_data'])
         cursor = con.cursor()
+
+        cursor.execute("LOCK TABLE domain WRITE, alias WRITE")
         
         print "inserting domains..." 
         cursor.execute("TRUNCATE domain")
@@ -45,6 +47,9 @@ if __name__ == "__main__":
         cursor.execute("TRUNCATE alias")
         for u in res['users']:
             cursor.execute("INSERT INTO alias (address, goto, active) VALUES (%s,%s,1)", (u['alias'], u['email']))
+
+        cursor.execute("UNLOCK TABLES")
+
         con.commit()
         
         print "done"
