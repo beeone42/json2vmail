@@ -1,0 +1,7 @@
+{
+    "url":"http://intranet.company.org/api/aliases.json",
+    "db_host":"localhost",
+    "db_user":"postfix",
+    "db_pass":"P4ssw0rd",
+    "db_data":"postfix"
+}
